@@ -93,9 +93,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             LT(NUMBERS, KC_TAB), LT(SYMBOLS, KC_SPC), LT(TEXT, KC_ESC),           LT(MOUSE, KC_ENT),  LT(WINDOWS, KC_BSPC),  KC_NO
     ),
     [SYMBOLS] = LAYOUT_split_3x6_3(
-        KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
-        KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
-        KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+        KC_TRNS, KC_TRNS,   KC_QUOT,    KC_AMPR,    KC_AT,  KC_CIRC,               KC_UNDS,    KC_DLR,    KC_HASH,    KC_ASTR,    KC_TRNS,    KC_TRNS,
+        KC_TRNS, KC_PIPE,    KC_DQUO,    KC_LBRC,    KC_RBRC,    KC_BSLS,           KC_EQL,    KC_LPRN,    KC_RPRN,    KC_PLUS,    KC_SCLN,    KC_TRNS,
+        KC_TRNS, KC_TILD,    KC_GRV,    KC_LT,    KC_GT,    KC_SLSH,           KC_MINS,    KC_LCBR,    KC_RCBR,    KC_PERC,    KC_COLN,    KC_TRNS,
                                          KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS
     ),
     [TEXT] = LAYOUT_split_3x6_3(
