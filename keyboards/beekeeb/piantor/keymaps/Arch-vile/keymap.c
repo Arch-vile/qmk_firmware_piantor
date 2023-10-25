@@ -111,9 +111,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                          KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS
     ),
     [WINDOWS] = LAYOUT_split_3x6_3(
-        KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
-        KC_TRNS, LCTL_T(KC_TRNS),    LALT_T(KC_TRNS),    LGUI_T(KC_TRNS),    LSFT_T(KC_TRNS),    KC_TRNS,           KC_TRNS,    RSFT_T(KC_TRNS),    RGUI_T(KC_TRNS),    RALT_T(KC_TRNS),    RCTL_T(KC_TRNS),    KC_TRNS,
-        KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+        KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_PLUS,    KC_MINS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+        KC_TRNS, LCTL_T(KC_TRNS),    LALT_T(KC_GRV),    LGUI_T(KC_LCBR),    LSFT_T(KC_RCBR),    KC_TRNS,           KC_TRNS,    RSFT_T(KC_TAB),    RGUI_T(LSFT(KC_TAB)),    RALT_T(LCAG(KC_ENT)),    RCTL_T(KC_TRNS),    KC_TRNS,
+        KC_TRNS, KC_TRNS,    KC_TRNS,    LCAG(KC_LEFT),    LCAG(KC_RIGHT),    KC_TRNS,           KC_TRNS,    LCAG(KC_DOWN),    LCAG(KC_UP),    KC_TRNS,    KC_TRNS,    KC_TRNS,
                                          KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS
     ),
     [NUMBERS] = LAYOUT_split_3x6_3(
