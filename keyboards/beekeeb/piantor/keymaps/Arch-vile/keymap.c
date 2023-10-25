@@ -99,10 +99,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                          KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS
     ),
     [TEXT] = LAYOUT_split_3x6_3(
-        KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
-        KC_TRNS, LCTL_T(KC_TRNS),    LALT_T(KC_TRNS),    LGUI_T(KC_TRNS),    LSFT_T(KC_TRNS),    KC_TRNS,           KC_TRNS,    RSFT_T(KC_TRNS),    RGUI_T(KC_TRNS),    RALT_T(KC_TRNS),    RCTL_T(KC_TRNS),    KC_TRNS,
-        KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
-                                         KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS
+        KC_TRNS, KC_TRNS,       KC_TRNS, LALT(KC_LEFT),    LALT(KC_RIGHT),     KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+        KC_TRNS, LCTL_T(LGUI(KC_A)),    LALT_T(LGUI(KC_X)),    LGUI_T(KC_LEFT),    LSFT_T(KC_RIGHT),    SGUI(KC_Z),           LGUI(KC_Z),    RSFT_T(KC_DOWN),    RGUI_T(KC_UP),    RALT_T(LGUI(KC_C)),    RCTL_T(LGUI(KC_V)),    KC_TRNS,
+        KC_TRNS, KC_TRNS,    KC_TRNS,    KC_HOME,    KC_END,    KC_TRNS,           KC_TRNS,    KC_PGDN,    KC_PGUP,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+                                         KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_LSFT,    KC_TRNS
     ),
     [MOUSE] = LAYOUT_split_3x6_3(
         KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
