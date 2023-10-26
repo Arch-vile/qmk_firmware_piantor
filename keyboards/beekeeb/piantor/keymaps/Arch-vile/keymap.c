@@ -7,35 +7,30 @@
 enum layer_names {
     BASE,
     SYMBOLS,
+    SYMBOLS_2,
     TEXT,
     MOUSE,
     WINDOWS,
     NUMBERS,
 };
 
+//Tap Dance Declarations
 enum {
-    CT_CLN,
-    TD_ESC_CAPS,
+  TD_ESC_CAPS,
+  TD_AMPR_PIPE,
+  TD_AT_DLR,
+  TD_SLSH_PSLS,
+  TD_DQUO_QUOT,
+  TD_LT_GT,
+  TD_EQL_MINS,
+  TD_LPRN_RPRN,
+  TD_LCBR_RCBR,
+  TD_LBRC_RBRC,
+  TD_SCLN_COLN,
 };
 
-typedef struct {
-    uint16_t tap;
-    uint16_t hold;
-    uint16_t held;
-} tap_dance_tap_hold_t;
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    tap_dance_action_t *action;
-
     switch (keycode) {
-        // not working
-        case TD(CT_CLN):  // list all tap dance keycodes with tap-hold configurations
-            action = &tap_dance_actions[TD_INDEX(keycode)];
-            if (!record->event.pressed && action->state.count && !action->state.finished) {
-                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
-                tap_code16(tap_hold->tap);
-            }
-            return true;
         case LT(WINDOWS, KC_ESC):
               if (!record->tap.count) {      // If holding.
                 if (record->event.pressed) { // On hold press.
@@ -49,40 +44,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {
-    tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
-
-    if (state->pressed) {
-        if (state->count == 1
-#ifndef PERMISSIVE_HOLD
-            && !state->interrupted
-#endif
-        ) {
-            register_code16(tap_hold->hold);
-            tap_hold->held = tap_hold->hold;
-        } else {
-            register_code16(tap_hold->tap);
-            tap_hold->held = tap_hold->tap;
-        }
-    }
-}
-
-void tap_dance_tap_hold_reset(tap_dance_state_t *state, void *user_data) {
-    tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
-
-    if (tap_hold->held) {
-        unregister_code16(tap_hold->held);
-        tap_hold->held = 0;
-    }
-}
-
-#define ACTION_TAP_DANCE_TAP_HOLD(tap, hold) \
-    { .fn = {NULL, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset}, .user_data = (void *)&((tap_dance_tap_hold_t){tap, hold, 0}), }
-
 tap_dance_action_t tap_dance_actions[] = {
-    [CT_CLN] = ACTION_TAP_DANCE_TAP_HOLD(KC_BSPC, LM(WINDOWS,MOD_LGUI)),
     // Tap once for Escape, twice for Caps Lock
     [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_A, KC_B),
+    [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
+    [TD_AMPR_PIPE] = ACTION_TAP_DANCE_DOUBLE(KC_AMPR, KC_PIPE),
+    [TD_AT_DLR] = ACTION_TAP_DANCE_DOUBLE(KC_AT, KC_DLR),
+    [TD_SLSH_PSLS] = ACTION_TAP_DANCE_DOUBLE(KC_SLSH, KC_BSLS),
+    [TD_DQUO_QUOT] = ACTION_TAP_DANCE_DOUBLE(KC_DQUO, KC_QUOT),
+    [TD_LT_GT] = ACTION_TAP_DANCE_DOUBLE(KC_LT, KC_GT),
+    [TD_EQL_MINS] = ACTION_TAP_DANCE_DOUBLE(KC_EQL, KC_MINS),
+    [TD_LPRN_RPRN] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_RPRN),
+    [TD_LCBR_RCBR] = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_RCBR),
+    [TD_LBRC_RBRC] = ACTION_TAP_DANCE_DOUBLE(KC_LBRC, KC_RBRC),
+    [TD_SCLN_COLN] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, KC_COLN),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -90,13 +65,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_NO,
         KC_NO, LCTL_T(KC_A),    LALT_T(KC_S),    LGUI_T(KC_D),    LSFT_T(KC_F),    KC_G,                               KC_H,    RSFT_T(KC_J),    RGUI_T(KC_K),    RALT_T(KC_L),    RCTL_T(KC_QUES), KC_NO,
         KC_NO, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_EXLM, KC_NO,
-                                            LT(NUMBERS, KC_TAB), LT(SYMBOLS, KC_SPC),  LT(WINDOWS, KC_ESC),           LT(MOUSE, KC_ENT),  LT(TEXT, KC_BSPC),  RALT(KC_U)
+                                            LT(NUMBERS, KC_TAB), LT(SYMBOLS_2, KC_SPC),  LT(WINDOWS, KC_ESC),           LT(MOUSE, KC_ENT),  LT(TEXT, KC_BSPC),  RALT(KC_U)
     ),
     [SYMBOLS] = LAYOUT_split_3x6_3(
         KC_TRNS, KC_TRNS, KC_QUOT, KC_AMPR, KC_AT,   KC_CIRC,          KC_UNDS, KC_DLR,  KC_HASH, KC_ASTR, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_PIPE, KC_DQUO, KC_LBRC, KC_RBRC, KC_BSLS,          KC_EQL,  KC_LPRN, KC_RPRN, KC_PLUS, KC_SCLN, KC_TRNS,
         KC_TRNS, KC_TILD, KC_GRV,  KC_LT,   KC_GT,   KC_SLSH,          KC_MINS, KC_LCBR, KC_RCBR, KC_PERC, KC_COLN, KC_TRNS,
                                    KC_TRNS, KC_TRNS, KC_TRNS,          KC_RCTL, KC_RGUI, KC_RALT
+    ),
+    [SYMBOLS_2] = LAYOUT_split_3x6_3(
+        KC_TRNS, KC_TRNS,          KC_QUOT,        KC_AMPR,          KC_AT,            KC_CIRC,                         KC_UNDS,         KC_DLR,           KC_HASH,          KC_ASTR,          KC_TRNS,          KC_TRNS,
+        KC_TRNS, TD(TD_AMPR_PIPE), TD(TD_AT_DLR),  TD(TD_SLSH_PSLS), TD(TD_DQUO_QUOT), TD(TD_LT_GT),                    TD(TD_EQL_MINS), TD(TD_LBRC_RBRC), TD(TD_LCBR_RCBR), TD(TD_LBRC_RBRC), TD(TD_SCLN_COLN), KC_TRNS,
+        KC_TRNS, KC_TRNS,          KC_TILD,        KC_PLUS,          KC_GRV,           KC_CIRC,                         KC_UNDS,         KC_HASH,          KC_ASTR,          KC_PERC,          KC_TRNS,          KC_TRNS,
+                                                   KC_TRNS,          KC_TRNS,          KC_TRNS,                         KC_RCTL,         KC_RGUI,          KC_RALT
     ),
     [TEXT] = LAYOUT_split_3x6_3(
         KC_TRNS, KC_TRNS,                KC_TRNS,                   LALT(KC_LEFT),      LALT(KC_RIGHT),                 KC_TRNS,                        KC_TRNS,       KC_PGDN,             KC_PGUP,            KC_TRNS,               KC_TRNS,               KC_TRNS,
