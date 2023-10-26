@@ -27,6 +27,10 @@ enum {
   TD_LCBR_RCBR,
   TD_LBRC_RBRC,
   TD_SCLN_COLN,
+  TD_W_Q,
+  TD_X_Z,
+  TD_O_P,
+  TD_DOT_EXL,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -58,6 +62,10 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_LCBR_RCBR] = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_RCBR),
     [TD_LBRC_RBRC] = ACTION_TAP_DANCE_DOUBLE(KC_LBRC, KC_RBRC),
     [TD_SCLN_COLN] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, KC_COLN),
+    [TD_W_Q] = ACTION_TAP_DANCE_DOUBLE(KC_W, KC_Q),
+    [TD_X_Z] = ACTION_TAP_DANCE_DOUBLE(KC_X, KC_Z),
+    [TD_O_P] = ACTION_TAP_DANCE_DOUBLE(KC_O, KC_P),
+    [TD_DOT_EXL] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_EXLM),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
