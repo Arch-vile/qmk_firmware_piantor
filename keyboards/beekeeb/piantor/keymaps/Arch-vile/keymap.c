@@ -70,13 +70,13 @@ tap_dance_action_t tap_dance_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_split_3x6_3(
-        KC_NO,   KC_NO,    TD(TD_W_Q),    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_NO,    KC_NO,
+        KC_NO,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_NO,    KC_NO,
         KC_NO, LCTL_T(KC_A),    LALT_T(KC_S),    LGUI_T(KC_D),    LSFT_T(KC_F),    KC_G,                               KC_H,    RSFT_T(KC_J),    RGUI_T(KC_K),    RALT_T(KC_L),    RCTL_T(KC_P), KC_NO,
-        KC_NO, KC_NO,    TD(TD_X_Z),    KC_C,    KC_V,    KC_B,                               KC_N,    KC_M,    TD(TD_COMM_EXLM), TD(TD_DOT_QUES),  KC_NO, KC_NO,
+        KC_NO, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                               KC_N,    KC_M,    TD(TD_COMM_EXLM), TD(TD_DOT_QUES),  KC_NO, KC_NO,
                                             LT(NUMBERS, KC_TAB), LT(SYMBOLS, KC_SPC),  LT(WINDOWS, KC_ESC),           LT(MOUSE, KC_ENT),  LT(TEXT, KC_BSPC),  RALT(KC_U)
     ),
     [SYMBOLS] = LAYOUT_split_3x6_3(
-        KC_TRNS, KC_TRNS,KC_ASTR, KC_QUOT,   KC_UNDS,  KC_CIRC,         KC_AT,  KC_HASH, KC_DLR,  KC_AMPR,  KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS,KC_ASTR, KC_QUOT,   KC_UNDS,  KC_CIRC,         KC_HASH, KC_AT,   KC_DLR,  KC_AMPR,  KC_TRNS, KC_TRNS,
         KC_TRNS, KC_PIPE,KC_PLUS, KC_DQUO,   KC_EQL,   KC_SLSH,         KC_LT,  KC_LPRN, KC_LCBR,KC_LBRC,  KC_SCLN, KC_TRNS,
         KC_TRNS, KC_TILD,KC_PERC, KC_GRV,    KC_MINS,  KC_BSLS,         KC_GT,  KC_RPRN, KC_RCBR,KC_RBRC,  KC_COLN, KC_TRNS,
                                    KC_TRNS, KC_TRNS, KC_TRNS,          KC_RCTL, KC_RGUI, KC_RALT
