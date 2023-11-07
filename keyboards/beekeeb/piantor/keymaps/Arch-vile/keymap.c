@@ -14,12 +14,12 @@ enum custom_keycodes {          // Make sure have the awesome keycode ready
 // Each layer gets a name for readability.
 enum layer_names {
     BASE,
-    SYMBOLS,
-    SYMBOLS_2,
-    TEXT,
+    SYM,
+    SYM_2,
+    NAV,
     MOUSE,
-    WINDOWS,
-    NUMBERS,
+    WIN,
+    NUM,
 };
 
 //Tap Dance Declarations
@@ -43,7 +43,7 @@ enum {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LT(WINDOWS, KC_ESC):
+        case LT(WIN, KC_ESC):
               if (!record->tap.count) {      // If holding.
                 if (record->event.pressed) { // On hold press.
                   register_mods(MOD_LGUI);   // Hold LGUI.
@@ -100,24 +100,24 @@ tap_dance_action_t tap_dance_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_split_3x6_3(
-        CMD_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_NO,    KC_NO,
-        KC_NO, LCTL_T(KC_A),    LALT_T(KC_S),    LGUI_T(KC_D),    LSFT_T(KC_F),    KC_G,                               KC_H,    RSFT_T(KC_J),    RGUI_T(KC_K),    RALT_T(KC_L),    RCTL_T(KC_P), KC_NO,
-        KC_NO, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                               KC_N,    KC_M,    TD(TD_COMM_EXLM), TD(TD_DOT_QUES),  KC_NO, KC_NO,
-                                            LT(NUMBERS, KC_TAB), LT(SYMBOLS, KC_SPC),  LT(WINDOWS, KC_ESC),           LT(MOUSE, KC_ENT),  LT(TEXT, KC_BSPC),  RALT(KC_U)
+        CMD_TAB,        KC_Q,               KC_W,               KC_E,               KC_R,               KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_NO,    KC_NO,
+        KC_NO,          LCTL_T(KC_A),       LALT_T(KC_S),       LGUI_T(KC_D),       LSFT_T(KC_F),       KC_G,                               KC_H,    RSFT_T(KC_J),    RGUI_T(KC_K),    RALT_T(KC_L),    RCTL_T(KC_P), KC_NO,
+        KC_NO,          KC_Z,               KC_X,               KC_C,               KC_V,               KC_B,                               KC_N,    KC_M,    TD(TD_COMM_EXLM), TD(TD_DOT_QUES),  KC_NO, KC_NO,
+                                            LT(NUM, KC_TAB), LT(SYM, KC_SPC),  LT(WIN, KC_ESC),           LT(MOUSE, KC_ENT),  LT(NAV, KC_BSPC),  RALT(KC_U)
     ),
-    [SYMBOLS] = LAYOUT_split_3x6_3(
+    [SYM] = LAYOUT_split_3x6_3(
         KC_TRNS, KC_TRNS,KC_ASTR, KC_QUOT,   KC_UNDS,  KC_CIRC,         KC_HASH, KC_AT,   KC_DLR,  KC_AMPR,  KC_TRNS, KC_TRNS,
         KC_TRNS, KC_PIPE,KC_PLUS, KC_DQUO,   KC_EQL,   KC_SLSH,         KC_LT,  KC_LPRN, KC_LCBR,KC_LBRC,  KC_SCLN, KC_TRNS,
         KC_TRNS, KC_TILD,KC_PERC, KC_GRV,    KC_MINS,  KC_BSLS,         KC_GT,  KC_RPRN, KC_RCBR,KC_RBRC,  KC_COLN, KC_TRNS,
                                    KC_TRNS, KC_TRNS, KC_TRNS,          KC_RCTL, KC_RGUI, KC_RALT
     ),
-    [SYMBOLS_2] = LAYOUT_split_3x6_3(
+    [SYM_2] = LAYOUT_split_3x6_3(
         KC_TRNS, KC_TRNS,          KC_QUOT,        KC_AMPR,          KC_AT,            KC_CIRC,                         KC_UNDS,         KC_DLR,           KC_HASH,          KC_ASTR,          KC_TRNS,          KC_TRNS,
         KC_TRNS, TD(TD_AMPR_PIPE), TD(TD_AT_DLR),  TD(TD_SLSH_PSLS), TD(TD_DQUO_QUOT), TD(TD_LT_GT),                    TD(TD_EQL_MINS), TD(TD_LPRN_RPRN), TD(TD_LCBR_RCBR), TD(TD_LBRC_RBRC), TD(TD_SCLN_COLN), KC_TRNS,
         KC_TRNS, KC_TRNS,          KC_TILD,        KC_PLUS,          KC_GRV,           KC_CIRC,                         KC_UNDS,         KC_HASH,          KC_ASTR,          KC_PERC,          KC_TRNS,          KC_TRNS,
                                                    KC_TRNS,          KC_TRNS,          KC_TRNS,                         KC_RCTL,         KC_RGUI,          KC_RALT
     ),
-    [TEXT] = LAYOUT_split_3x6_3(
+    [NAV] = LAYOUT_split_3x6_3(
         KC_TRNS, KC_TRNS,                KC_TRNS,           LALT(KC_LEFT),      LALT(KC_RIGHT),                 KC_TRNS,                        KC_TRNS,       KC_PGDN,             KC_PGUP,            KC_TRNS,               KC_TRNS,               KC_TRNS,
         KC_TRNS, LGUI(KC_A),             LGUI(KC_X),        KC_LEFT,            KC_RIGHT,               SGUI(KC_Z),                     LGUI(KC_Z),    KC_DOWN,     KC_UP,      LGUI(KC_C),    LGUI(KC_V),    KC_TRNS,
         KC_TRNS, KC_TRNS,                KC_TRNS,           LGUI(KC_LEFT),      LGUI(KC_RIGHT),                         KC_TRNS,                        KC_TRNS,       KC_END,             KC_HOME,            KC_TRNS,               KC_TRNS,               KC_TRNS,
@@ -129,13 +129,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
                                          KC_TRNS,    KC_TRNS,    KC_TRNS,           KC_TRNS,    KC_TRNS,    KC_TRNS
     ),
-    [WINDOWS] = LAYOUT_split_3x6_3(
+    [WIN] = LAYOUT_split_3x6_3(
         KC_TRNS, KC_TRNS,   KC_TRNS,    KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_TRNS,    KC_PLUS,          KC_MINS,        KC_TRNS,         KC_TRNS,    KC_TRNS,
         KC_TRNS, KC_TRNS,   KC_GRV,     KC_LCBR,       KC_RCBR,           KC_TRNS,           KC_TRNS,    KC_TAB,           LSFT(KC_TAB),   LCAG(KC_ENT),    KC_TRNS,    KC_TRNS,
         KC_TRNS, KC_TRNS,   KC_TRNS,    LCAG(KC_LEFT), LCAG(KC_RIGHT),    KC_TRNS,           KC_TRNS,    LCAG(KC_DOWN),    LCAG(KC_UP),    KC_TRNS,         KC_TRNS,    KC_TRNS,
                                         KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_TRNS,    KC_TRNS,          KC_TRNS
     ),
-    [NUMBERS] = LAYOUT_split_3x6_3(
+    [NUM] = LAYOUT_split_3x6_3(
         KC_TRNS, KC_TRNS,    KC_F1,    KC_F2,    KC_F3,    KC_F10,                                           KC_TRNS,    KC_1,    KC_2,    KC_3,    KC_TRNS,    KC_TRNS,
         KC_TRNS, LCTL_T(KC_TRNS),    LALT_T(KC_F4),    LGUI_T(KC_F5),    LSFT_T(KC_F6),    KC_F11,           KC_TRNS,    RSFT_T(KC_4),    RGUI_T(KC_5),    RALT_T(KC_6),    RCTL_T(KC_TRNS),    KC_TRNS,
         KC_TRNS, KC_TRNS,    KC_F7,    KC_F8,    KC_F9,    KC_F12,                                           KC_TRNS,    KC_7,    KC_8,    KC_9,    KC_TRNS,    KC_TRNS,
