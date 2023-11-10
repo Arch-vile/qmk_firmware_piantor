@@ -20,3 +20,5 @@
 // With LSFT_T(KC_F) given the sequence executed faster then TAPPING_TERM: F down, J down, J up, F up
 // would emit 'j' instead of 'J'
 #define PERMISSIVE_HOLD
+
+#define ONESHOT_TAP_TOGGLE 2
