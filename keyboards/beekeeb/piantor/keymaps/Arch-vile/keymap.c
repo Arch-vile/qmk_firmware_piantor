@@ -11,17 +11,6 @@ enum custom_keycodes {          // Make sure have the awesome keycode ready
   CMD_TAB = SAFE_RANGE,
 };
 
-const uint16_t PROGMEM shiftL_combo[] = {LGUI_T(KC_D), LSFT_T(KC_F), COMBO_END};
-const uint16_t PROGMEM shiftR_combo[] = {LSFT_T(KC_J), RGUI_T(KC_K), COMBO_END};
-const uint16_t PROGMEM ent_combo[] = {LALT_T(KC_S), LGUI_T(KC_D), COMBO_END};
-const uint16_t PROGMEM bspc_combo[] = {RGUI_T(KC_K), RALT_T(KC_L), COMBO_END};
-combo_t key_combos[] = {
-    COMBO(shiftL_combo, OSM(MOD_LSFT)),
-    COMBO(shiftR_combo, OSM(MOD_LSFT)),
-    COMBO(bspc_combo, KC_BSPC),
-    COMBO(ent_combo, KC_ENT),
-};
-
 // Each layer gets a name for readability.
 enum layer_names {
     BASE,
@@ -32,6 +21,19 @@ enum layer_names {
     MOUSE,
     WIN,
     NUM,
+};
+
+//const uint16_t PROGMEM shiftL_combo[] = {LGUI_T(KC_D), LSFT_T(KC_F), COMBO_END};
+//const uint16_t PROGMEM shiftR_combo[] = {LSFT_T(KC_J), RGUI_T(KC_K), COMBO_END};
+//const uint16_t PROGMEM shift_combo[] = {LT(NUM, KC_SPC), MO(SYM), COMBO_END};
+const uint16_t PROGMEM ent_combo[] = {LSFT_T(KC_J), RGUI_T(KC_K), COMBO_END};
+//const uint16_t PROGMEM bspc_combo[] = {RGUI_T(KC_K), RALT_T(KC_L), COMBO_END};
+combo_t key_combos[] = {
+//    COMBO(shiftL_combo, OSM(MOD_LSFT)),
+//    COMBO(shift_combo, OSM(MOD_LSFT)),
+//    COMBO(shiftR_combo, OSM(MOD_LSFT)),
+//    COMBO(bspc_combo, KC_BSPC),
+    COMBO(ent_combo, KC_ENT),
 };
 
 //Tap Dance Declarations
@@ -113,10 +115,10 @@ tap_dance_action_t tap_dance_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_split_3x6_3(
-        OSM(MOD_LSFT),          KC_Q,               KC_W,               KC_E,               KC_R,               KC_T,                   /**/            KC_Y,               KC_U,               KC_I,               KC_O,               KC_NO,          KC_NO,
-        KC_NO,          LCTL_T(KC_A),       LALT_T(KC_S),       LGUI_T(KC_D),       LSFT_T(KC_F),               KC_G,                   /**/            KC_H,               LSFT_T(KC_J),               RGUI_T(KC_K),       RALT_T(KC_L),       RCTL_T(KC_P),   KC_NO,
-        KC_NO,          KC_Z,               KC_X,               KC_C,               KC_V,               KC_B,                   /**/            KC_N,               KC_M,               KC_COMM,            KC_DOT,             KC_NO,          KC_NO,
-                                                                MO(WIN),   LT(NUM, KC_SPC),    MO(NAV),        /**/            KC_NO,            MO(SYM),            LT(MOUSE, KC_ESC)
+        KC_NO,          KC_Q,               KC_W,               KC_E,               KC_R,               KC_T,                   /**/            KC_Y,               KC_U,               KC_I,               KC_O,               KC_EXLM,          KC_NO,
+        KC_NO,          LCTL_T(KC_A),       LALT_T(KC_S),       LGUI_T(KC_D),       LSFT_T(KC_F),       KC_G,                   /**/            KC_H,               LSFT_T(KC_J),       RGUI_T(KC_K),       RALT_T(KC_L),       RCTL_T(KC_P),   KC_NO,
+        KC_NO,          KC_Z,               KC_X,               KC_C,               KC_V,               KC_B,                   /**/            KC_N,               KC_M,               KC_COMM,            KC_DOT,             KC_QUES,          KC_NO,
+                                                                LT(WIN, KC_ESC),    LT(NUM, KC_SPC),    LT(NAV, KC_TAB),        /**/            KC_LSFT,            MO(SYM),            MT(MOUSE,RALT(KC_U) )
     ),
     [SFT] = LAYOUT_split_3x6_3(
         KC_NO,          LSFT(KC_Q),         LSFT(KC_W),         LSFT(KC_E),         LSFT(KC_R),       LSFT(KC_T),                   /**/            LSFT(KC_Y),               LSFT(KC_U),       LSFT(KC_I),        LSFT(KC_O),       KC_NO,         KC_NO,
@@ -128,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,    KC_NO,      KC_PERC,    KC_QUOT,    KC_UNDS,    KC_HASH,   /**/     KC_AT,      KC_AMPR,    KC_DLR,     KC_TRNS,    KC_NO,      KC_NO,
         KC_NO,    KC_PIPE,    KC_PLUS,    KC_DQUO,    KC_EQL,     KC_SLSH,   /**/     KC_LT,      KC_LPRN,    KC_LCBR,    KC_LBRC,    KC_SCLN,    KC_NO,
         KC_NO,    KC_TILD,    KC_ASTR,    KC_GRV,     KC_MINS,    KC_BSLS,   /**/     KC_GT,      KC_RPRN,    KC_RCBR,    KC_RBRC,    KC_COLN,    KC_NO,
-                                          KC_NO,      KC_NO,      KC_NO,     /**/     KC_NO,      KC_NO,      KC_NO
+                                          KC_NO,      KC_BSPC,      KC_NO,     /**/     KC_NO,      KC_NO,      KC_NO
     ),
     [NAV] = LAYOUT_split_3x6_3(
         KC_TRNS,    KC_TRNS,    KC_TRNS,    LALT(KC_LEFT),      LALT(KC_RIGHT),     KC_TRNS,        /**/    KC_TRNS,        KC_PGDN,    KC_PGUP,    KC_TRNS,        KC_TRNS,        KC_TRNS,

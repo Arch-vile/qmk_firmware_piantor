@@ -11,7 +11,7 @@
 #define SERIAL_USART_TX_PIN GP0
 #define SERIAL_USART_RX_PIN GP1
 
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 
 // TAPPING_TERM is also used by the tap dance. So though we could set it long, because permissive hold,
 // the tap dance would feel sluggish as it would wait long time for the second tap.
