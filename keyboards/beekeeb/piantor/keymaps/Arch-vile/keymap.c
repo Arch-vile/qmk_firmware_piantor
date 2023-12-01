@@ -145,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                 KC_TRNS,            KC_TRNS,            KC_TRNS,           /**/     KC_TRNS,    KC_TRNS,             KC_TRNS
     ),
     [WIN] = LAYOUT_split_3x6_3(
-        KC_NO, KC_NO,           KC_NO,      KC_NO,            KC_NO,           KC_NO,             /**/   KC_NO,           KC_NO,          KC_NO,          KC_NO,      KC_NO,  KC_NO,
+        KC_NO, KC_NO,           KC_NO,      KC_NO,            KC_NO,           SGUI(KC_5),             /**/   SGUI(KC_4),           KC_NO,          KC_NO,          KC_NO,      KC_NO,  KC_NO,
         KC_NO, LGUI(KC_GRV),    KC_NO,      LGUI(KC_RCBR),    CMD_TAB,         KC_NO,             /**/   LGUI(KC_PLUS),   LCAG(KC_DOWN),  LCAG(KC_UP),    KC_NO,      KC_NO,  KC_NO,
         KC_NO, KC_NO,           KC_NO,      LGUI(KC_LCBR),    LSFT_T(CMD_TAB), KC_NO,             /**/   LGUI(KC_MINS),   KC_NO,          KC_NO,          KC_NO,      KC_NO,  KC_NO,
                                              KC_NO,           KC_NO,           KC_NO,             /**/   LCAG(KC_LEFT),   LCAG(KC_ENT),   LCAG(KC_RIGHT)
