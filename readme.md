@@ -1,3 +1,9 @@
+# Fork of QMK
+
+To compile run: `qmk compile` this will create the uf2 file to the root of the project
+
+
+
 # Quantum Mechanical Keyboard Firmware
 
 [![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)
