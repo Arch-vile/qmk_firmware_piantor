@@ -1,5 +1,23 @@
 # Piantor
 
+To build the firmware:
+
+```bash
+qmk compile
+# Compiling keymap with gmake --jobs=1 beekeeb/piantor:Arch-vile
+```
+
+Should get the firmware file:
+`beekeeb_piantor_Arch-vile.uf2`
+
+To install the firmware:
+Repeat the following steps for each half of the keyboard:
+1. Keep the `BOOTSEL` button pressed
+2. Plug in the USB cable
+3. Drag and drop the firmware file to the USB drive that appears
+
+# Original README
+
 ![Piantor](https://i.imgur.com/xIF754Qh.jpg)
 
 Piantor is a Cantor fork with Raspberry Pi Pico, hybrid hotswap socket and soldered-in switches support, and a breakable column.

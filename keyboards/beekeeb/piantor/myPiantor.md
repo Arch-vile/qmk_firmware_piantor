@@ -1,5 +1,8 @@
 # Sherwood Split - easy navigation
 
+
+
+
 "Sherwood Split" is a name that takes inspiration from the legendary English folk hero, Robin Hood, who was known for his exceptional skills as an archer and his uncanny ability to split an arrow with another. The name "Sherwood Split" represents the design of the keyboard layout, where the navigation keys are distinctively separated on either side, replicating the act of splitting an arrow.
 
 To be done still:
