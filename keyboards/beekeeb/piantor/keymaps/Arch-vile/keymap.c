@@ -3,6 +3,14 @@
 
 #include QMK_KEYBOARD_H
 
+// QMK SUPER ALT TAB
+bool is_cmd_tab_active = false; // ADD this near the beginning of keymap.c
+uint16_t cmd_tab_timer = 0;     // we will be using them soon.
+
+enum custom_keycodes {          // Make sure have the awesome keycode ready
+  CMD_TAB = SAFE_RANGE,
+};
+
 // Each layer gets a name for readability.
 enum layer_names {
     BASE,
@@ -46,6 +54,43 @@ enum {
   TD_DOT_QUES,
   TD_COMM_EXLM,
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+//        case LT(WIN, KC_ESC):
+//              if (!record->tap.count) {      // If holding.
+//                if (record->event.pressed) { // On hold press.
+//                  register_mods(MOD_LGUI);   // Hold LGUI.
+//                } else {                     // On hold release.
+//                  unregister_mods(MOD_LGUI); // Release LGUI.
+//                }
+//              }
+//              return true;  // Continue normal handling.
+        case CMD_TAB:
+              if (record->event.pressed) {
+                if (!is_cmd_tab_active) {
+                  is_cmd_tab_active = true;
+                  register_code(KC_LGUI);
+                }
+                cmd_tab_timer = timer_read();
+                register_code(KC_TAB);
+              } else {
+                unregister_code(KC_TAB);
+              }
+              return true;
+    }
+    return true;
+}
+
+// The timer for the CMD_TAB
+void matrix_scan_user(void) {
+  if (is_cmd_tab_active) {
+    if (timer_elapsed(cmd_tab_timer) > 5000) {
+      unregister_code(KC_LGUI);
+      is_cmd_tab_active = false;
+    }
+  }
+}
 
 tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Escape, twice for Caps Lock
@@ -100,8 +145,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [WIN] = LAYOUT_split_3x6_3(
         KC_NO, KC_NO,           KC_NO,              KC_NO,            KC_NO,           SGUI(KC_5),              /**/   LSFT(LGUI(KC_SLSH)),       KC_NO,          KC_NO,          KC_NO,      KC_NO,  KC_NO,
-        KC_NO, LGUI(KC_GRV),    LCTL(KC_TAB),       LGUI(KC_RCBR),    KC_NO,           LSFT(LGUI(LCTL(KC_4))),  /**/   LGUI(KC_PLUS),             LCAG(KC_DOWN),  LCAG(KC_UP),    KC_NO,      KC_NO,  KC_NO,
-        KC_NO, KC_NO,           LSFT(LCTL(KC_TAB)), LGUI(KC_LCBR),    KC_NO,           SGUI(KC_4),              /**/   LGUI(KC_MINS),             KC_NO,          KC_NO,          KC_NO,      KC_NO,  KC_NO,
+        KC_NO, LGUI(KC_GRV),    LCTL(KC_TAB),       LGUI(KC_RCBR),    CMD_TAB,         LSFT(LGUI(LCTL(KC_4))),  /**/   LGUI(KC_PLUS),             LCAG(KC_DOWN),  LCAG(KC_UP),    KC_NO,      KC_NO,  KC_NO,
+        KC_NO, KC_NO,           LSFT(LCTL(KC_TAB)), LGUI(KC_LCBR),    LSFT_T(CMD_TAB), SGUI(KC_4),              /**/   LGUI(KC_MINS),             KC_NO,          KC_NO,          KC_NO,      KC_NO,  KC_NO,
                                                     KC_NO,            KC_NO,           KC_NO,                   /**/   LCAG(KC_LEFT),             LCAG(KC_ENT),   LCAG(KC_RIGHT)
     ),
     [NUM] = LAYOUT_split_3x6_3(
